@@ -20,8 +20,10 @@ app.use("/api/wishlist", require("./routes/wishlistRoutes"));
 app.use("/api/orders", require("./routes/orderRoutes"));
 
 // MongoDB Connection
+const mongoUri = process.env.MONGO_URI || "mongodb+srv://shalinikj05_db_user:Shalini%40123@wowcart.bolf1kq.mongodb.net/wowcart";
+
 mongoose
-  .connect(process.env.MONGO_URI, {
+  .connect(mongoUri, {
     serverSelectionTimeoutMS: 5000,
     socketTimeoutMS: 45000,
   })
