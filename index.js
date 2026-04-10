@@ -21,7 +21,10 @@ app.use("/api/orders", require("./routes/orderRoutes"));
 
 // MongoDB Connection
 mongoose
-  .connect(process.env.MONGO_URI)
+  .connect(process.env.MONGO_URI, {
+    serverSelectionTimeoutMS: 5000,
+    socketTimeoutMS: 45000,
+  })
   .then(() => console.log("✅ MongoDB Connected"))
   .catch((err) => console.log(err));
 
