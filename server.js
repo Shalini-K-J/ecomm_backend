@@ -2,10 +2,13 @@ const express = require("express");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const cors = require("cors");
+const { createServer } = require("http");
+const { Server } = require("socket.io");
 
 dotenv.config();
 
 const app = express();
+const httpServer = createServer(app);
 
 
 app.use(cors({
@@ -20,18 +23,6 @@ app.use(cors({
 }));
 
 
-const server = createServer(app);
-const io = new Server(server, {
-  cors: {
-    origin: [
-    'https://ecom-frontend-brown.vercel.app',
-    'https://ecomm-backend-4uer.onrender.com',
-    'http://localhost:5000',
-    'http://localhost:5173'
-    ],
-    methods: ['GET', 'POST']
-  }
-});
 const PORT = process.env.PORT || 5000;
 
 // Middleware
@@ -47,7 +38,6 @@ app.use((req, res, next) => {
    ];
 
    const origin = req.headers.origin;
-   // Allow requests from both frontend and backend domains
    if (allowedOrigins.includes(origin) || !origin) {
      res.header('Access-Control-Allow-Origin', origin || '*');
    }
@@ -60,6 +50,18 @@ app.use((req, res, next) => {
    } else {
      next();
    }
+});
+
+const io = new Server(httpServer, {
+  cors: {
+    origin: [
+      'https://ecom-frontend-brown.vercel.app',
+      'https://ecomm-backend-4uer.onrender.com',
+      'http://localhost:5000',
+      'http://localhost:5173'
+    ],
+    methods: ['GET', 'POST']
+  }
 });
 
 // Routes
@@ -85,6 +87,6 @@ app.get("/", (req, res) => {
   res.send("Backend Running...");
 });
 
-app.listen(PORT, () =>
+httpServer.listen(PORT, () =>
   console.log(`✅ Server running on port ${PORT}`)
 );
