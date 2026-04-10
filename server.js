@@ -14,7 +14,7 @@ const httpServer = createServer(app);
 app.use(cors({
   origin: [
     'https://ecom-frontend-brown.vercel.app',
-    'https://ecomm-backend-4uer.onrender.com',
+    'https://ecomm-backend-dsyn.onrender.com',
     'http://localhost:5000',
     'http://localhost:5173'
   ],
@@ -32,7 +32,7 @@ app.use(express.urlencoded({ limit: '50mb', extended: true }));
 app.use((req, res, next) => {
    const allowedOrigins = [
     'https://ecom-frontend-brown.vercel.app',
-    'https://ecomm-backend-4uer.onrender.com',
+    'https://ecomm-backend-dsyn.onrender.com',
     'http://localhost:5000',
     'http://localhost:5173'
    ];
@@ -56,7 +56,7 @@ const io = new Server(httpServer, {
   cors: {
     origin: [
       'https://ecom-frontend-brown.vercel.app',
-      'https://ecomm-backend-4uer.onrender.com',
+      'https://ecomm-backend-dsyn.onrender.com',
       'http://localhost:5000',
       'http://localhost:5173'
     ],
