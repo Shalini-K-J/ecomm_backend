@@ -14,6 +14,7 @@ const httpServer = createServer(app);
 app.use(cors({
   origin: [
     'https://ecom-frontend-brown.vercel.app',
+    'https://ecom-frontend-okjqp321k-shalini-k-js-projects.vercel.app',
     'https://ecomm-backend-dsyn.onrender.com',
     'http://localhost:5000',
     'http://localhost:5173'
@@ -32,6 +33,7 @@ app.use(express.urlencoded({ limit: '50mb', extended: true }));
 app.use((req, res, next) => {
    const allowedOrigins = [
     'https://ecom-frontend-brown.vercel.app',
+    'https://ecom-frontend-okjqp321k-shalini-k-js-projects.vercel.app',
     'https://ecomm-backend-dsyn.onrender.com',
     'http://localhost:5000',
     'http://localhost:5173'
@@ -56,6 +58,7 @@ const io = new Server(httpServer, {
   cors: {
     origin: [
       'https://ecom-frontend-brown.vercel.app',
+      'https://ecom-frontend-okjqp321k-shalini-k-js-projects.vercel.app',
       'https://ecomm-backend-dsyn.onrender.com',
       'http://localhost:5000',
       'http://localhost:5173'
@@ -72,7 +75,7 @@ app.use("/api/wishlist", require("./routes/wishlistRoutes"));
 app.use("/api/orders", require("./routes/orderRoutes"));
 
 // MongoDB Connection
-const mongoUri = process.env.MONGO_URI || "mongodb+srv://shalinikj05_db_user:Shalini%40123@wowcart.bolf1kq.mongodb.net/wowcart";
+const mongoUri = process.env.MONGO_URI || "mongodb+srv://shalinikj05_db_user:Shalini123@wowcart.bolf1kq.mongodb.net/wowcart";
 
 mongoose
   .connect(mongoUri, {
