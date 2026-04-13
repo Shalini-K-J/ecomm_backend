@@ -10,64 +10,22 @@ dotenv.config();
 const app = express();
 const httpServer = createServer(app);
 
-
 app.use(cors({
-  origin: [
-    'https://ecom-frontend-brown.vercel.app',
-    'https://ecom-frontend-okjqp321k-shalini-k-js-projects.vercel.app',
-    'https://ecom-frontend-nu-henna.vercel.app',
-    'https://ecomm-backend-dsyn.onrender.com',
-    'http://localhost:5000',
-    'http://localhost:5173'
-  ],
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization']
+  origin: true,
+  credentials: true
 }));
 
-
-const PORT = process.env.PORT || 5000;
-
-// Middleware
-app.use(cors());
 app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ limit: '50mb', extended: true }));
-app.use((req, res, next) => {
-   const allowedOrigins = [
-    'https://ecom-frontend-brown.vercel.app',
-    'https://ecom-frontend-okjqp321k-shalini-k-js-projects.vercel.app',
-    'https://ecom-frontend-nu-henna.vercel.app',
-    'https://ecomm-backend-dsyn.onrender.com',
-    'http://localhost:5000',
-    'http://localhost:5173'
-   ];
-
-   const origin = req.headers.origin;
-   if (allowedOrigins.includes(origin) || !origin) {
-     res.header('Access-Control-Allow-Origin', origin || '*');
-   }
-    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
-   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization, Content-Type');
-   res.header('Access-Control-Allow-Credentials', 'true');
-
-   if (req.method === 'OPTIONS') {
-     res.sendStatus(200);
-   } else {
-     next();
-   }
-});
 
 const io = new Server(httpServer, {
   cors: {
-    origin: [
-      'https://ecom-frontend-brown.vercel.app',
-      'https://ecom-frontend-okjqp321k-shalini-k-js-projects.vercel.app',
-      'https://ecomm-backend-dsyn.onrender.com',
-      'http://localhost:5000',
-      'http://localhost:5173'
-    ],
+    origin: "*",
     methods: ['GET', 'POST']
   }
 });
+
+const PORT = process.env.PORT || 5000;
 
 // Routes
 app.use("/api/users", require("./routes/userRoutes"));
