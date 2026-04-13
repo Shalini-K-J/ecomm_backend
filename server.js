@@ -15,6 +15,7 @@ app.use(cors({
   origin: [
     'https://ecom-frontend-brown.vercel.app',
     'https://ecom-frontend-okjqp321k-shalini-k-js-projects.vercel.app',
+    'https://ecom-frontend-nu-henna.vercel.app',
     'https://ecomm-backend-dsyn.onrender.com',
     'http://localhost:5000',
     'http://localhost:5173'
@@ -34,6 +35,7 @@ app.use((req, res, next) => {
    const allowedOrigins = [
     'https://ecom-frontend-brown.vercel.app',
     'https://ecom-frontend-okjqp321k-shalini-k-js-projects.vercel.app',
+    'https://ecom-frontend-nu-henna.vercel.app',
     'https://ecomm-backend-dsyn.onrender.com',
     'http://localhost:5000',
     'http://localhost:5173'
