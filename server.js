@@ -59,3 +59,10 @@ app.use((req, res) => {
 httpServer.listen(PORT, () =>
   console.log(`✅ Server running on port ${PORT}`)
 );
+
+import cors from "cors";
+
+app.use(cors({
+  origin: "https://ecom-frontend-nu-henna.vercel.app",
+  credentials: true
+}));
