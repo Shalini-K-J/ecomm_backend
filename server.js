@@ -50,6 +50,12 @@ app.get("/", (req, res) => {
   res.send("Backend Running...");
 });
 
+// Catch-all for debugging
+app.use((req, res) => {
+  console.log(`404: ${req.method} ${req.url}`);
+  res.status(404).json({ error: "Not found", path: req.url });
+});
+
 httpServer.listen(PORT, () =>
   console.log(`✅ Server running on port ${PORT}`)
 );
