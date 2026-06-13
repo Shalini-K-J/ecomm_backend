@@ -43,7 +43,9 @@ mongoose
     socketTimeoutMS: 45000,
   })
   .then(() => console.log("✅ MongoDB Connected"))
-  .catch((err) => console.log(err));
+  .catch((err) => {
+    console.error("❌ MongoDB Connection Error:", err.message);
+  });
 
 // Test Route
 app.get("/", (req, res) => {
