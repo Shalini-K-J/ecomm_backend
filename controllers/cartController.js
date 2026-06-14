@@ -5,7 +5,7 @@ exports.getCart = async (req, res) => {
   try {
     const { userId } = req.params;
     
-    let cart = await Cart.findOne({ userId }).populate('items.productId');
+    let cart = await Cart.findOne({ userId });
     
     if (!cart) {
       // Create empty cart if doesn't exist
@@ -33,7 +33,7 @@ exports.addToCart = async (req, res) => {
 
     // Check if product already in cart
     const existingItemIndex = cart.items.findIndex(
-      item => item.productId.toString() === productId
+      item => item.productId === productId
     );
 
     if (existingItemIndex > -1) {

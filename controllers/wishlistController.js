@@ -5,7 +5,7 @@ exports.getWishlist = async (req, res) => {
   try {
     const { userId } = req.params;
     
-    let wishlist = await Wishlist.findOne({ userId }).populate('items.productId');
+    let wishlist = await Wishlist.findOne({ userId });
     
     if (!wishlist) {
       wishlist = new Wishlist({ userId, items: [] });
@@ -32,7 +32,7 @@ exports.addToWishlist = async (req, res) => {
 
     // Check if product already in wishlist
     const existingItemIndex = wishlist.items.findIndex(
-      item => item.productId.toString() === productId
+      item => item.productId === productId
     );
 
     if (existingItemIndex > -1) {
